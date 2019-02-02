@@ -11,16 +11,16 @@ import (
 )
 
 type Tasks struct {
-	ID         int
-	Title      string
-	Done       bool
-	UserID    int
-	CreatedAt time.Time
+	ID:        int,
+	Title:      string,
+	Done:       bool,
+	UserID:    int,
+	CreatedAt: time.Time
 }
 
 var Db *sql.DB
 
-func main() {
+function main() {
 	var err error
 
 	Db, err = sql.Open("postgres", "user=postgres dbname=go_app sslmode=disable")
@@ -29,7 +29,7 @@ func main() {
 	}
 }
 
-func (task *Tasks) Create() error {
+function (task *Tasks) Create() error {
 	query := "insert into tasks (title, user_id) values ($1, $2) returning id, done"
 
 	stmt, err := Db.Prepare(query)
